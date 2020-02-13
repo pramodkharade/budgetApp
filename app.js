@@ -7,7 +7,7 @@ let budgetController = (function() {}
 // UI Controller
 
 let UIController = (function() {
-    DOMstrings = {
+    let DOMstrings = {
         inputType: '.add__type',
         inputDescription: '.add__description',
         inputValue: '.add__value',
@@ -16,11 +16,14 @@ let UIController = (function() {
     return {
         getInput: function() {
             return {
-                type: document.querySelector('.add__type').value, // will be either inc or exp
-                description: document.querySelector('.add__description').value,
-                value: document.querySelector('.add__value').value
+                type: document.querySelector(DOMstrings.inputType).value, // will be either inc or exp
+                description: document.querySelector(DOMstrings.inputDescription).value,
+                value: document.querySelector(DOMstrings.inputValue).value
             };
         },
+        getDomStrings: function() {
+            return DOMstrings;
+        }
     };
 
 })();
@@ -28,6 +31,7 @@ let UIController = (function() {
 // APP controller
 
 let appController = (function(budgetCtrl, uiCtrl) {
+    let DOM = uiCtrl.getDomStrings();
     // common function for DRY principle 
     let ctrlAddItem = function() {
         // 1. Get filed input data
@@ -40,7 +44,7 @@ let appController = (function(budgetCtrl, uiCtrl) {
         console.log(' its worked');
     };
     // click button
-    document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
+    document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
     // Enter Button press
     document.addEventListener('keypress', function(event) {
         if (event.keyCode === 13 || event.which === 13) {
