@@ -1,8 +1,19 @@
 // Budget Controller
 
-let budgetController = (function() {}
-
-)();
+let budgetController = (function() {
+    // contructor Function
+    let Expense = function(id, description, value) {
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    };
+    // contructor Function
+    let Income = function(id, description, value) {
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    };
+})();
 
 // UI Controller
 
