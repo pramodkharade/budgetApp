@@ -26,23 +26,21 @@ let UIController = (function() {
 // APP controller
 
 let appController = (function(budgetCtrl, uiCtrl) {
-    // click button
-    document.querySelector('.add__btn').addEventListener('click', function() {
+    // common function for DRY principle 
+    let ctrlAddItem = function() {
         // 1. Get filed input data
         // 2. Add item to budget controller
         // 3. Add item to UI controller
         // 4. Calculate the budget
         // 5. Display budget on UI
-    });
+        console.log(' its worked');
+    };
+    // click button
+    document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
     // Enter Button press
     document.addEventListener('keypress', function(event) {
         if (event.keyCode === 13 || event.which === 13) {
-            // 1. Get filed input data
-            // 2. Add item to budget controller
-            // 3. Add item to UI controller
-            // 4. Calculate the budget
-            // 5. Display budget on UI
-            console.log('Enter was pressed');
+            ctrlAddItem();
         }
     });
 })(budgetController, UIController);
