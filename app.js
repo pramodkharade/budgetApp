@@ -16,8 +16,10 @@ let UIController = (function() {
     return {
         getInput: function() {
             return {
-                type: document.querySelector()
-            }
+                type: document.querySelector('.add__type').value, // will be either inc or exp
+                description: document.querySelector('.add__description').value,
+                value: document.querySelector('.add__value').value
+            };
         },
     };
 
@@ -29,6 +31,8 @@ let appController = (function(budgetCtrl, uiCtrl) {
     // common function for DRY principle 
     let ctrlAddItem = function() {
         // 1. Get filed input data
+        let input = uiCtrl.getInput();
+        console.log('Input is::', input);
         // 2. Add item to budget controller
         // 3. Add item to UI controller
         // 4. Calculate the budget
