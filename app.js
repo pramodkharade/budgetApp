@@ -31,7 +31,19 @@ let UIController = (function() {
 // APP controller
 
 let appController = (function(budgetCtrl, uiCtrl) {
-    let DOM = uiCtrl.getDomStrings();
+    let setupEventListners = function() {
+        let DOM = uiCtrl.getDomStrings();
+        // click button
+        document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
+        // Enter Button press
+        document.addEventListener('keypress', function(event) {
+            if (event.keyCode === 13 || event.which === 13) {
+                ctrlAddItem();
+            }
+        });
+
+    };
+
     // common function for DRY principle 
     let ctrlAddItem = function() {
         // 1. Get filed input data
@@ -43,12 +55,13 @@ let appController = (function(budgetCtrl, uiCtrl) {
         // 5. Display budget on UI
         console.log(' its worked');
     };
-    // click button
-    document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
-    // Enter Button press
-    document.addEventListener('keypress', function(event) {
-        if (event.keyCode === 13 || event.which === 13) {
-            ctrlAddItem();
+    return {
+        init: function() {
+            console.log('Application has been started');
+            setupEventListners();
         }
-    });
+    };
+
 })(budgetController, UIController);
+
+appController.init();
