@@ -89,6 +89,10 @@ let UIController = (function() {
         inputBtn: '.add__btn',
         incomeContainer: '.income__list',
         expenseContainer: '.expenses__list',
+        budgetLabel: '.budget__value',
+        incomeLabel: '.budget__income--value',
+        expenseLabel: '.budget__expenses--value',
+        percentageLabel: '.budget__expenses--percentage'
     };
     return {
         getInput: function() {
@@ -127,6 +131,13 @@ let UIController = (function() {
             });
             fieldsArr[0].focus();
         },
+        displayBudget: function(obj) {
+            console.log('OBJ::', obj)
+            document.querySelector(DOMstrings.budgetLabel).textContent = obj.budget;
+            document.querySelector(DOMstrings.incomeLabel).textContent = obj.totalInc;
+            document.querySelector(DOMstrings.expenseLabel).textContent = obj.totalExp;
+            document.querySelector(DOMstrings.percentageLabel).textContent = obj.percentage + '%';
+        },
         getDomStrings: function() {
             return DOMstrings;
         }
@@ -154,8 +165,9 @@ let appController = (function(budgetCtrl, uiCtrl) {
         budgetCtrl.calculateBudget();
         // 2. return the budget
         let budget = budgetCtrl.getBudget();
+        console.log('budget', budget);
         // 3. Display budget on UI
-
+        uiCtrl.displayBudget(budget);
     };
     // common function for DRY principle 
     let ctrlAddItem = function() {
