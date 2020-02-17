@@ -61,7 +61,7 @@ let UIController = (function() {
             return {
                 type: document.querySelector(DOMstrings.inputType).value, // will be either inc or exp
                 description: document.querySelector(DOMstrings.inputDescription).value,
-                value: document.querySelector(DOMstrings.inputValue).value
+                value:parseFloat(document.querySelector(DOMstrings.inputValue).value)
             };
         },
         addListItem: function(obj, type) {
@@ -115,21 +115,28 @@ let appController = (function(budgetCtrl, uiCtrl) {
         });
 
     };
+    let updateBudget =  function(){
+        // 1. Calculate the budget
+        // 2. return the budget
+        // 3. Display budget on UI
 
+    };
     // common function for DRY principle 
     let ctrlAddItem = function() {
         let input, newItem;
         // 1. Get filed input data
         input = uiCtrl.getInput();
         console.log('Input is::', input);
-        // 2. Add item to budget controller
+        if(input.description !=="" && !isNaN(input.value) && input.value > 0){
+            // 2. Add item to budget controller
         newItem = budgetCtrl.addItem(input.type, input.description, input.value);
         // 3. Add item to UI controller
         uiCtrl.addListItem(newItem,input.type);
-        // clear fields
+        // 4. clear fields
         uiCtrl.clearFields();
-        // 4. Calculate the budget
-        // 5. Display budget on UI
+        // 5. calculate budget and update UI
+        updateBudget();
+        }
         console.log(' its worked');
     };
     return {
